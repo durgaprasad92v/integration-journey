@@ -1,5 +1,39 @@
 # Learning Journal
 
+## Session 2 — Causing failure on purpose (Date: <28/05/2026>)
+
+### What I built
+A script that triggers and gracefully handles four HTTP failure
+modes: 4xx (client error), 5xx (server error), network error,
+and timeout. The script never crashes — it observes failures
+and reports them.
+
+### What surprised me
+Case 3 (500 error) returned an empty response body. The server
+said "I failed" with no explanation. This taught me that
+production integration code has to handle the case where the
+upstream system tells you nothing useful. You can't always
+parse a meaningful error message.
+
+### Three things I learned (in my own words)
+
+1.4xx is a client error and retry doesn't work , and 5xx is server error and sometimes if we try again server may respond.
+2.Timeout fail is the most dangerous of all, beccause we don't know whether it really created the request and processed ,so we should not retry unless we have idempotency key
+3.In the python code , we given "try" and "except" . we will give some internet address which may fail under "try" , so when it fails then it will come to a safety code if give "except"
+### Debugging notes
+I hit syntax errors and indentation errors while typing this
+script. Each one taught me to read the Python error message
+carefully — the line number and error type usually tell me
+exactly where to look. Indentation matters in Python:
+unlike braces in other languages, whitespace is meaningful.
+### How this maps to pharma
+ In my current project this scenario could occur with LIMS with MES Integration where Registration ID is the main check, In this any failure could occur .
+
+
+
+
+
+
 A running log of what I learn each session — in my own words.
 
 ---
